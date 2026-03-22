@@ -60,49 +60,72 @@
             </div>
         </div>
 
-        <!-- Mis Publicaciones -->
         @if ($posts->count() > 0)
             <div class="card card-custom mt-4">
-                <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title mb-0">Mis Publicaciones ({{ $posts->count() }})</h5>
-                    <a href="{{ route('posts.index') }}" class="btn btn-cyber btn-sm">Ver todas</a>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Mis Publicaciones recientes ({{ $posts->count() }})</h5>
                 </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover mb-0 dashboard-posts">
-                            <thead>
-                                <tr>
-                                    <th>Título</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($posts as $post)
-                                    <tr>
-                                        <td class="fw-bold">{{ Str::limit($post->title, 40) }}</td>
-                                        <td>
-                                            <span
-                                                class="badge {{ $post->status == 'published' ? 'bg-success' : 'bg-warning' }}">
-                                                {{ ucfirst($post->status) }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <a href="{{ route('posts.show', $post) }}" class="btn btn-cyber btn-sm">
-                                                    <i class="fas fa-eye me-1"></i>Ver
-                                                </a>
-                                                <a href="{{ route('posts.edit', $post) }}" class="btn btn-cyber btn-sm"
-                                                    style="background: linear-gradient(135deg, #0f3460, #16213e);">
-                                                    <i class="fas fa-pen me-1"></i>Editar
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="card-body">
+                    @foreach ($posts as $post)
+                        @php
+                            $limite = 300;
+                            $contenido = $post->content;
+                            $esLargo = strlen($contenido) > $limite;
+                            $resumen = $esLargo ? Str::limit($contenido, $limite, '') : $contenido;
+                            $postId = 'post-' . $post->id;
+                        @endphp
+
+                        <div class="dashboard-post-card mb-4 p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="fw-bold mb-0" style="color: var(--cyber-accent, #00d4ff);">
+                                    {{ $post->title }}
+                                </h6>
+                                <span
+                                    class="badge {{ $post->status === 'published' ? 'bg-success' : 'bg-warning' }} ms-2 flex-shrink-0">
+                                    {{ $post->status === 'published' ? 'Publicado' : 'Borrador' }}
+                                </span>
+                            </div>
+
+                            @if ($esLargo)
+                                <div id="{{ $postId }}-resumen">
+                                    <p class="post-content-text mb-2">{{ $resumen }}...</p>
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        <button class="btn btn-cyber btn-sm" onclick="expandirPost('{{ $postId }}')">
+                                            <i class="fas fa-chevron-down me-1"></i>Leer más
+                                        </button>
+                                        <a href="{{ route('posts.show', $post) }}" class="btn btn-cyber btn-sm"
+                                            style="background: linear-gradient(135deg, #0f3460, #16213e);">
+                                            <i class="fas fa-external-link-alt me-1"></i>Ver página completa
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div id="{{ $postId }}-completo" style="display: none;">
+                                    <p class="post-content-text mb-2" style="white-space: pre-line;">{{ $contenido }}
+                                    </p>
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        <button class="btn btn-cyber btn-sm" onclick="contraerPost('{{ $postId }}')">
+                                            <i class="fas fa-chevron-up me-1"></i>Mostrar menos
+                                        </button>
+                                        <a href="{{ route('posts.show', $post) }}" class="btn btn-cyber btn-sm"
+                                            style="background: linear-gradient(135deg, #0f3460, #16213e);">
+                                            <i class="fas fa-external-link-alt me-1"></i>Ver página completa
+                                        </a>
+                                    </div>
+                                </div>
+                            @else
+                                <p class="post-content-text mb-2" style="white-space: pre-line;">{{ $contenido }}</p>
+                                <a href="{{ route('posts.show', $post) }}" class="btn btn-cyber btn-sm"
+                                    style="background: linear-gradient(135deg, #0f3460, #16213e);">
+                                    <i class="fas fa-external-link-alt me-1"></i>Ver publicación
+                                </a>
+                            @endif
+                        </div>
+
+                        @if (!$loop->last)
+                            <hr style="border-color: rgba(255,255,255,0.08); margin: 0 0 1rem 0;">
+                        @endif
+                    @endforeach
                 </div>
             </div>
         @else
@@ -115,4 +138,18 @@
             </div>
         @endif
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        function expandirPost(postId) {
+            document.getElementById(postId + '-resumen').style.display = 'none';
+            document.getElementById(postId + '-completo').style.display = 'block';
+        }
+
+        function contraerPost(postId) {
+            document.getElementById(postId + '-completo').style.display = 'none';
+            document.getElementById(postId + '-resumen').style.display = 'block';
+        }
+    </script>
 @endsection

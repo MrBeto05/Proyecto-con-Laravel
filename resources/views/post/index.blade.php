@@ -31,7 +31,7 @@
                         <td style="color:#7a8ba0;font-size:0.82rem;">{{ $post->slug }}</td>
                         <td>
                             <div class="d-flex gap-2">
-                                <a href="{{ route('posts.show', $post) }}" class="btn btn-cyber btn-sm">
+                                <a href="{{ route('posts.show', $post) }}?from=gestor" class="btn btn-cyber btn-sm">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
                                 <a href="{{ route('posts.edit', $post) }}" class="btn btn-cyber btn-sm"
