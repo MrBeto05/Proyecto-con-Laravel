@@ -1,0 +1,325 @@
+/* CyberGuard — Posts */
+
+.container {
+    max-width: 1000px;
+    padding: 36px 20px 60px;
+    color: var(--text);
+}
+
+/* ── Título ── */
+.post-title {
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #fff 20%, var(--red) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+hr {
+    border-color: var(--border);
+    opacity: 0.4;
+    margin: 18px 0;
+}
+
+/* ── TABLA CRUD — fuerza fondo oscuro ── */
+.tabla {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+    margin-top: 16px;
+}
+
+/* Neutraliza TODO lo que Bootstrap mete en blanco */
+.tabla,
+.tabla thead,
+.tabla tbody,
+.tabla tfoot,
+.tabla tr,
+.tabla th,
+.tabla td {
+    background-color: transparent !important;
+    color: var(--text) !important;
+    border-color: rgba(15, 52, 96, 0.45) !important;
+}
+
+.tabla thead tr {
+    background: rgba(15, 52, 96, 0.55) !important;
+}
+
+.tabla thead th {
+    color: var(--muted) !important;
+    font-family: "Space Mono", monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border) !important;
+    background: rgba(15, 52, 96, 0.55) !important;
+}
+
+.tabla tbody tr {
+    background: rgba(22, 33, 62, 0.6) !important;
+}
+.tabla tbody tr:nth-child(even) {
+    background: rgba(15, 52, 96, 0.35) !important;
+}
+.tabla tbody tr:hover {
+    background: rgba(233, 69, 96, 0.06) !important;
+}
+
+.tabla tbody td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(15, 52, 96, 0.35) !important;
+    color: var(--text) !important;
+}
+
+.tabla tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* ── Card show ── */
+.card {
+    background: linear-gradient(
+        145deg,
+        rgba(22, 33, 62, 0.9),
+        rgba(15, 52, 96, 0.6)
+    ) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+    color: var(--text) !important;
+}
+.card-body {
+    padding: 1.4rem !important;
+    color: var(--text) !important;
+}
+
+/* ── Formularios ── */
+.form-label {
+    color: var(--muted) !important;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 5px !important;
+}
+
+.form-control,
+.form-select {
+    background: rgba(15, 52, 96, 0.4) !important;
+    border: 1px solid rgba(233, 69, 96, 0.2) !important;
+    border-radius: 9px !important;
+    color: #fff !important;
+    padding: 11px 14px !important;
+    font-size: 0.92rem;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+.form-control:focus,
+.form-select:focus {
+    background: rgba(15, 52, 96, 0.6) !important;
+    border-color: var(--red) !important;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.14) !important;
+    color: #fff !important;
+    outline: none;
+}
+.form-control::placeholder {
+    color: rgba(122, 139, 160, 0.55) !important;
+}
+textarea.form-control {
+    min-height: 160px;
+    resize: vertical;
+}
+.form-select option {
+    background: var(--surface);
+    color: var(--text);
+}
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: var(--red) !important;
+}
+.invalid-feedback {
+    color: #fca5a5;
+    font-size: 0.78rem;
+}
+
+/* ── Botón cyber ── */
+.btn-cyber {
+    background: linear-gradient(135deg, var(--red) 0%, #c73350 100%);
+    color: #fff !important;
+    border: none;
+    border-radius: 7px;
+    font-family: "Space Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 9px 20px;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+    box-shadow: 0 4px 16px var(--red-glow);
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-cyber:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(233, 69, 96, 0.4);
+    color: #fff !important;
+}
+.btn-cyber.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+}
+
+/* ── Badges ── */
+.badge.bg-success {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    font-family: "Space Mono", monospace;
+    font-size: 0.66rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 4px;
+}
+.badge.bg-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    color: #fff !important;
+    font-family: "Space Mono", monospace;
+    font-size: 0.66rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 4px;
+}
+
+/* ── Paginación ── */
+.pagination .page-link {
+    background: rgba(15, 52, 96, 0.4);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+.pagination .page-link:hover {
+    background: var(--red-dim);
+    border-color: var(--red);
+    color: #fff;
+}
+.pagination .page-item.active .page-link {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+}
+
+/* ── Alertas ── */
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #6ee7b7;
+    border-radius: 9px;
+    padding: 11px 14px;
+}
+.alert-danger {
+    background: rgba(233, 69, 96, 0.1);
+    border: 1px solid var(--border);
+    color: #fca5a5;
+    border-radius: 9px;
+    padding: 11px 14px;
+}
+.alert-danger ul {
+    margin: 0;
+    padding-left: 1.1rem;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 12px 40px;
+    }
+    .tabla {
+        font-size: 0.82rem;
+    }
+    .tabla thead th,
+    .tabla tbody td {
+        padding: 9px 10px;
+    }
+    .post-actions {
+        flex-direction: column;
+    }
+    .btn-cyber {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ── Formulario crear/editar: labels y texto visibles ── */
+.container .form-label,
+.container label {
+    color: #c8d8e8 !important;
+}
+
+.container h1,
+.container h2,
+.container h3,
+.container p,
+.container .text-white {
+    color: var(--text) !important;
+}
+
+/* Card show.blade ── */
+.card .card-body,
+.card .card-body p,
+.card .card-body strong {
+    color: var(--text) !important;
+}
+
+/* ════ TABLA posts — vence Bootstrap (0,2,1) usando (0,3,1) ════ */
+html body .table.tabla > :not(caption) > * > *,
+html body .tabla > :not(caption) > * > * {
+    background-color: transparent !important;
+    color: #eaeaea !important;
+    border-bottom-color: rgba(15, 52, 96, 0.4) !important;
+    box-shadow: none !important;
+}
+
+html body .tabla thead > * > * {
+    background-color: rgba(15, 52, 96, 0.55) !important;
+    color: #7a8ba0 !important;
+    font-family: "Space Mono", monospace !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    padding: 13px 16px !important;
+    border-bottom: 1px solid rgba(233, 69, 96, 0.22) !important;
+}
+
+html body .tabla tbody > tr:nth-child(odd) > * {
+    background-color: rgba(22, 33, 62, 0.6) !important;
+}
+html body .tabla tbody > tr:nth-child(even) > * {
+    background-color: rgba(15, 52, 96, 0.35) !important;
+}
+html body .tabla tbody > tr:hover > * {
+    background-color: rgba(233, 69, 96, 0.06) !important;
+    color: #eaeaea !important;
+}

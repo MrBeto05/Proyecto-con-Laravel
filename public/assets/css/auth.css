@@ -1,0 +1,291 @@
+/* ═══════════════════════════════════════════════
+   CyberGuard — Auth (login, signup)
+   SOLO para páginas de login/signup
+   ═══════════════════════════════════════════════ */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap");
+
+:root {
+    --red: #e94560;
+    --red-glow: rgba(233, 69, 96, 0.35);
+    --red-dim: rgba(233, 69, 96, 0.12);
+    --navy: #0f3460;
+    --deep: #0c0c1a;
+    --mid: #1a1a2e;
+    --surface: #16213e;
+    --border: rgba(233, 69, 96, 0.25);
+    --text: #eaeaea;
+    --muted: #7a8ba0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Syne", "Segoe UI", sans-serif;
+    background:
+        radial-gradient(
+            ellipse 80% 60% at 50% 0%,
+            rgba(233, 69, 96, 0.1) 0%,
+            transparent 70%
+        ),
+        linear-gradient(
+            135deg,
+            var(--deep) 0%,
+            var(--mid) 50%,
+            var(--surface) 100%
+        );
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    /* Grid decorativo */
+    background-image:
+        radial-gradient(
+            ellipse 80% 60% at 50% 0%,
+            rgba(233, 69, 96, 0.1) 0%,
+            transparent 70%
+        ),
+        linear-gradient(rgba(233, 69, 96, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(233, 69, 96, 0.03) 1px, transparent 1px),
+        linear-gradient(
+            135deg,
+            var(--deep) 0%,
+            var(--mid) 50%,
+            var(--surface) 100%
+        );
+    background-size:
+        auto,
+        60px 60px,
+        60px 60px,
+        auto;
+}
+
+/* ════ NAVBAR ════ */
+.navbar {
+    background: rgba(12, 12, 26, 0.7) !important;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar-brand {
+    font-family: "Space Mono", monospace !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+    background: linear-gradient(135deg, var(--red), #ff8fa3) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    letter-spacing: -1px;
+}
+
+/* ════ CARDS LOGIN / SIGNUP ════ */
+.login-card,
+.signup-card {
+    background: linear-gradient(
+        145deg,
+        rgba(22, 33, 62, 0.97),
+        rgba(15, 52, 96, 0.85)
+    );
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 90%;
+    max-width: 440px;
+    padding: 44px 40px;
+    border-radius: 24px;
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(233, 69, 96, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+/* Línea superior roja */
+.login-card::before,
+.signup-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
+}
+
+/* Punto de luz de fondo */
+.login-card::after,
+.signup-card::after {
+    content: "";
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 120px;
+    background: radial-gradient(
+        ellipse,
+        rgba(233, 69, 96, 0.1) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+/* Título */
+.login-card h2,
+.signup-card h2 {
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
+    font-size: 1.7rem;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff 0%, #ffb3c1 60%, var(--red) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 28px !important;
+}
+
+/* ════ FORMULARIO ════ */
+.form-label {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px !important;
+}
+
+.form-control {
+    background: rgba(15, 52, 96, 0.4) !important;
+    border: 1px solid rgba(233, 69, 96, 0.2) !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    padding: 13px 16px !important;
+    font-size: 0.95rem;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+}
+
+.form-control:focus {
+    background: rgba(15, 52, 96, 0.65) !important;
+    border-color: var(--red) !important;
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15) !important;
+    color: #fff !important;
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: rgba(122, 139, 160, 0.5) !important;
+}
+
+/* ════ BOTÓN ════ */
+.btn-cyber {
+    background: linear-gradient(135deg, var(--red) 0%, #c73350 100%);
+    color: #fff !important;
+    border: none;
+    border-radius: 10px;
+    font-family: "Space Mono", monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 15px !important;
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+    box-shadow: 0 8px 24px var(--red-glow);
+    margin-top: 4px;
+}
+
+.btn-cyber::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.btn-cyber:hover::after {
+    left: 140%;
+}
+
+.btn-cyber:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(233, 69, 96, 0.5);
+}
+
+/* ════ LINK REGISTRO ════ */
+.login-card p,
+.signup-card p {
+    color: var(--muted);
+    font-size: 0.88rem;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+a {
+    color: var(--red);
+    transition: color 0.2s;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff;
+}
+
+/* ════ ALERTAS ════ */
+.alert-danger {
+    background: rgba(233, 69, 96, 0.12);
+    border: 1px solid var(--border);
+    color: #fca5a5;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 0.88rem;
+}
+
+.alert-danger ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+/* ════ ANIMACIÓN ════ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ════ RESPONSIVE ════ */
+@media (max-width: 576px) {
+    .login-card,
+    .signup-card {
+        padding: 32px 24px;
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+}
